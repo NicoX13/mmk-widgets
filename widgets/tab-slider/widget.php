@@ -362,7 +362,7 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 			'type'       => \Elementor\Controls_Manager::SLIDER,
 			'size_units' => [ 'rem', 'px' ],
 			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
-			'default'    => [ 'size' => 1, 'unit' => 'rem' ],
+			'default'    => [ 'size' => 0.25, 'unit' => 'rem' ],
 			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-pfeil-padding: {{SIZE}}{{UNIT}};' ],
 		] );
 
