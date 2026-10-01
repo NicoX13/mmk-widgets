@@ -22,6 +22,8 @@
     --ss-punkt:       0.625rem;
     --ss-punkt-aktiv: var(--red, rgb(182 30 63));
     --ss-punkt-rand:  var(--gray, rgb(40 40 40));
+    --ss-pfeilbtn-padding:  0.25rem;
+    --ss-pfeilbtn-hover-bg: var(--red, rgb(182 30 63));
 
     // Soll-Breite einer Karte bei n sichtbaren Karten
     --ss-breite:      calc((100% - (var(--ss-sichtbar) - 1) * var(--ss-luecke)) / var(--ss-sichtbar));
@@ -183,7 +185,7 @@
     .mmk-showcase-slider__slider-pfeil {
         display:    none;
         min-width:  0;
-        padding:    0.25rem;
+        padding:    var(--ss-pfeilbtn-padding);
         border:     0;
         border-radius: 50%;
         background: transparent;
@@ -191,11 +193,16 @@
         line-height: 0;
         color:      var(--gray, rgb(40 40 40));
         cursor:     pointer;
+        transition: background 0.2s ease, color 0.2s ease;
 
         svg {width:1.5rem; height:1.5rem; fill:none;}
 
-        // Hover/Fokus wie der aktive Punkt (übersteuerbar: --ss-punkt-hover)
-        &:is(:hover, :focus-visible) {color:var(--ss-punkt-hover, var(--ss-punkt-aktiv));}
+        // Roter Hintergrund bei Hover/Aktiv/Fokus, Icon dann weiß
+        &:is(:hover, :active, :focus-visible) {
+            background:    var(--ss-pfeilbtn-hover-bg);
+            border-radius: 50%;
+            color:         rgb(255 255 255);
+        }
 
         &:focus-visible {
             outline:        3px solid currentColor;

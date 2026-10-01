@@ -439,6 +439,24 @@ class MMK_Widget_Showcase_Slider extends \Elementor\Widget_Base {
 			'condition' => [ 'pfeile' => 'yes' ],
 		] );
 
+		$this->add_control( 'pfeil_button_hover_bg', [
+			'label'       => 'Pfeil-Buttons Hintergrund Hover/Fokus',
+			'description' => 'Standard: Rot aus dem Template.',
+			'type'        => \Elementor\Controls_Manager::COLOR,
+			'selectors'   => [ '{{WRAPPER}} .mmk-showcase-slider' => '--ss-pfeilbtn-hover-bg: {{VALUE}};' ],
+			'condition'   => [ 'pfeile' => 'yes' ],
+		] );
+
+		$this->add_control( 'pfeil_button_padding', [
+			'label'      => 'Pfeil-Buttons Padding',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
+			'default'    => [ 'size' => 0.25, 'unit' => 'rem' ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-showcase-slider' => '--ss-pfeilbtn-padding: {{SIZE}}{{UNIT}};' ],
+			'condition'  => [ 'pfeile' => 'yes' ],
+		] );
+
 		$this->end_controls_section();
 	}
 

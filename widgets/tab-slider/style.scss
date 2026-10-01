@@ -151,9 +151,15 @@
         color:          var(--tts-tab);
         cursor:         pointer;
 
-        // Grau als Standard, bei Hover/Aktiv/Fokus weiß (--tts-tab-hover übersteuert)
-        &:is(:hover, :focus-visible) {color:var(--tts-tab-hover, var(--tts-tab-aktiv));}
-        &[aria-selected="true"]      {color:var(--tts-tab-aktiv); font-weight:700;}
+        // Grau als Standard, bei Hover/Aktiv/Fokus NUR weiße Schrift.
+        // Hintergrund/Radius auch im Zustand gepinnt, sonst gewinnt hier
+        // die spezifischere button:hover-Regel aus den Elementor-Globals.
+        &:is(:hover, :focus-visible) {
+            color:         var(--tts-tab-hover, var(--tts-tab-aktiv));
+            background:    var(--tts-tab-bg, transparent);
+            border-radius: var(--tts-tab-radius, 0);
+        }
+        &[aria-selected="true"] {color:var(--tts-tab-aktiv); font-weight:700;}
 
         &:focus-visible {
             outline:        3px solid currentColor;

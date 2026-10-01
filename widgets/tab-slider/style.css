@@ -138,6 +138,8 @@
 }
 .mmk-tab-slider .mmk-tab-slider__tab:is(:hover, :focus-visible) {
   color: var(--tts-tab-hover, var(--tts-tab-aktiv));
+  background: var(--tts-tab-bg, transparent);
+  border-radius: var(--tts-tab-radius, 0);
 }
 .mmk-tab-slider .mmk-tab-slider__tab[aria-selected=true] {
   color: var(--tts-tab-aktiv);
