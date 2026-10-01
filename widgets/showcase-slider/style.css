@@ -7,8 +7,8 @@
   --ss-dauer: 0.4s;
   --ss-icon: 1.75rem;
   --ss-punkt: 0.625rem;
-  --ss-punkt-aktiv: rgb(182 30 63);
-  --ss-punkt-rand: rgb(40 40 40);
+  --ss-punkt-aktiv: var(--red, rgb(182 30 63));
+  --ss-punkt-rand: var(--gray, rgb(40 40 40));
   --ss-breite: calc((100% - (var(--ss-sichtbar) - 1) * var(--ss-luecke)) / var(--ss-sichtbar));
 }
 .mmk-showcase-slider .mmk-showcase-slider__rahmen {
@@ -142,6 +142,10 @@
   line-height: 0;
   cursor: pointer;
 }
+.mmk-showcase-slider .mmk-showcase-slider__punkt:hover {
+  border-color: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
+  background: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
+}
 .mmk-showcase-slider .mmk-showcase-slider__punkt[aria-current=true] {
   border-color: var(--ss-punkt-aktiv);
   background: var(--ss-punkt-aktiv);
@@ -159,13 +163,16 @@
   background: transparent;
   box-shadow: none;
   line-height: 0;
-  color: rgb(40, 40, 40);
+  color: var(--gray, rgb(40, 40, 40));
   cursor: pointer;
 }
 .mmk-showcase-slider .mmk-showcase-slider__slider-pfeil svg {
   width: 1.5rem;
   height: 1.5rem;
   fill: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil:is(:hover, :focus-visible) {
+  color: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
 }
 .mmk-showcase-slider .mmk-showcase-slider__slider-pfeil:focus-visible {
   outline: 3px solid currentColor;

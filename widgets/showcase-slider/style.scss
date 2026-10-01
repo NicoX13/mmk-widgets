@@ -16,10 +16,12 @@
     --ss-radius:      1.5rem;
     --ss-wachstum:    1.5;
     --ss-dauer:       0.4s;
+    // Farben folgen den Template-Variablen (modus_V5 _colors.scss);
+    // die Fallbacks halten das Plugin ohne unser Theme lauffähig.
     --ss-icon:        1.75rem;
     --ss-punkt:       0.625rem;
-    --ss-punkt-aktiv: rgb(182 30 63);
-    --ss-punkt-rand:  rgb(40 40 40);
+    --ss-punkt-aktiv: var(--red, rgb(182 30 63));
+    --ss-punkt-rand:  var(--gray, rgb(40 40 40));
 
     // Soll-Breite einer Karte bei n sichtbaren Karten
     --ss-breite:      calc((100% - (var(--ss-sichtbar) - 1) * var(--ss-luecke)) / var(--ss-sichtbar));
@@ -161,6 +163,12 @@
         line-height:   0;
         cursor:        pointer;
 
+        // Hover wie Aktiv/Fokus (per Stil-Regler übersteuerbar: --ss-punkt-hover)
+        &:hover {
+            border-color: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
+            background:   var(--ss-punkt-hover, var(--ss-punkt-aktiv));
+        }
+
         &[aria-current="true"] {
             border-color: var(--ss-punkt-aktiv);
             background:   var(--ss-punkt-aktiv);
@@ -181,10 +189,13 @@
         background: transparent;
         box-shadow: none;
         line-height: 0;
-        color:      rgb(40 40 40);
+        color:      var(--gray, rgb(40 40 40));
         cursor:     pointer;
 
         svg {width:1.5rem; height:1.5rem; fill:none;}
+
+        // Hover/Fokus wie der aktive Punkt (übersteuerbar: --ss-punkt-hover)
+        &:is(:hover, :focus-visible) {color:var(--ss-punkt-hover, var(--ss-punkt-aktiv));}
 
         &:focus-visible {
             outline:        3px solid currentColor;

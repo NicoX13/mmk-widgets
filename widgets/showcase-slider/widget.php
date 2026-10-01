@@ -409,6 +409,13 @@ class MMK_Widget_Showcase_Slider extends \Elementor\Widget_Base {
 			'selectors' => [ '{{WRAPPER}} .mmk-showcase-slider' => '--ss-punkt-rand: {{VALUE}};' ],
 		] );
 
+		$this->add_control( 'punkt_hover', [
+			'label'       => 'Hover (Punkte & Pfeile)',
+			'description' => 'Leer = gleiche Farbe wie der aktive Punkt.',
+			'type'        => \Elementor\Controls_Manager::COLOR,
+			'selectors'   => [ '{{WRAPPER}} .mmk-showcase-slider' => '--ss-punkt-hover: {{VALUE}};' ],
+		] );
+
 		$this->add_control( 'punkt_groesse', [
 			'label'      => 'Punkt-Größe',
 			'type'       => \Elementor\Controls_Manager::SLIDER,
