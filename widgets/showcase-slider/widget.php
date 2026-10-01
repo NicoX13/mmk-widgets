@@ -265,6 +265,14 @@ class MMK_Widget_Showcase_Slider extends \Elementor\Widget_Base {
 			'condition' => [ 'autoplay' => 'yes' ],
 		] );
 
+		$this->add_control( 'autoplay_pause', [
+			'label'       => 'Pause bei Hover',
+			'description' => 'Bei Tastatur-Fokus pausiert das Autoplay immer (Barrierefreiheit).',
+			'type'        => \Elementor\Controls_Manager::SWITCHER,
+			'default'     => 'yes',
+			'condition'   => [ 'autoplay' => 'yes' ],
+		] );
+
 		$this->end_controls_section();
 
 		// Stil: Karten
@@ -492,6 +500,7 @@ class MMK_Widget_Showcase_Slider extends \Elementor\Widget_Base {
 			'text_tag'          => \Elementor\Utils::validate_html_tag( $e['text_tag'] ),
 			'bereich_label'     => $e['bereich_label'] ?: 'Referenzen',
 			'autoplay_sekunden' => 'yes' === $e['autoplay'] ? max( 1, floatval( $e['autoplay_sekunden'] ?: 5 ) ) : 0,
+			'pause_bei_hover'   => 'yes' === $e['autoplay_pause'],
 			'punkte'            => 'yes' === $e['punkte'],
 			'pfeile'            => 'yes' === $e['pfeile'],
 			'verlauf_hover_aus' => 'yes' === $e['verlauf_hover_aus'],

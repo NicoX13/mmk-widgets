@@ -85,6 +85,7 @@ function mmk_showcase_slider_markup( array $a ) {
 		'text_tag'          => 'p',
 		'bereich_label'     => 'Referenzen',
 		'autoplay_sekunden' => 0,
+		'pause_bei_hover'   => true,
 		'punkte'            => true,
 		'pfeile'            => false,
 		'verlauf_hover_aus' => true,
@@ -106,7 +107,7 @@ function mmk_showcase_slider_markup( array $a ) {
 
 	ob_start();
 	?>
-	<div class="<?php echo esc_attr( implode( ' ', $klassen ) ); ?>" data-autoplay="<?php echo esc_attr( $a['autoplay_sekunden'] ); ?>"<?php echo $a['style'] ? ' style="' . esc_attr( $a['style'] ) . '"' : ''; ?>>
+	<div class="<?php echo esc_attr( implode( ' ', $klassen ) ); ?>" data-autoplay="<?php echo esc_attr( $a['autoplay_sekunden'] ); ?>" data-pause-hover="<?php echo $a['pause_bei_hover'] ? '1' : '0'; ?>"<?php echo $a['style'] ? ' style="' . esc_attr( $a['style'] ) . '"' : ''; ?>>
 		<div class="mmk-showcase-slider__rahmen">
 			<ul class="mmk-showcase-slider__track" aria-label="<?php echo esc_attr( $a['bereich_label'] ); ?>">
 				<?php foreach ( $a['karten'] as $karte ) : ?>

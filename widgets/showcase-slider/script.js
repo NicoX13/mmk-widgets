@@ -14,6 +14,7 @@ class MmkShowcaseSlider {
 		this.karten   = [...this.track.children];
 		this.punkte   = [...root.querySelectorAll('.mmk-showcase-slider__punkt')];
 		this.sekunden = parseFloat(root.dataset.autoplay) || 0;
+		this.pauseBeiHover = root.dataset.pauseHover !== '0';
 		this.aktiv    = 0;
 		this.timer    = null;
 		this.anim     = null;
@@ -128,8 +129,12 @@ class MmkShowcaseSlider {
 	#autoplay() {
 		if (!this.sekunden || !this.sanft || this.imEditor) return;
 		this.#start();
-		this.root.addEventListener('pointerenter', () => this.#stopp());
-		this.root.addEventListener('pointerleave', () => this.#start());
+		if (this.pauseBeiHover) {
+			this.root.addEventListener('pointerenter', () => this.#stopp());
+			this.root.addEventListener('pointerleave', () => this.#start());
+		}
+		// Fokus-Pause bleibt immer an: Tastatur-Nutzer müssen bewegte
+		// Inhalte anhalten können (WCAG 2.2.2)
 		this.root.addEventListener('focusin', () => this.#stopp());
 		this.root.addEventListener('focusout', () => this.#start());
 		document.addEventListener('visibilitychange', () => {
