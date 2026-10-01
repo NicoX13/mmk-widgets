@@ -5,6 +5,7 @@ Eigene Elementor-Widgets der Agentur modus. Erscheinen im Elementor-Panel unter 
 ## Widgets
 
 - **mmk Showcase-Slider** — Bildkarten mit Hover-Wachstum und ausblendendem Verlauf. Quellen: manuell, Beiträge nach Kategorie oder handverlesene Beiträge. Wird automatisch zum Scroll-Slider (Punkte, optionale Pfeile, optionales Autoplay), sobald mehr Karten da sind als Plätze.
+- **mmk Tab-Slider** — „Unsere Leistungen im Überblick": Panel mit Folien (Headline links, Titel + Beschreibung + optionaler Button rechts), Tab-Leiste unten, Pfeile, optionale Punkte, Autoplay. Hintergrund und Headline pro Folie übersteuerbar, mobil eine Spalte. Shortcode: `[mmk_tab_slider]` mit `[mmk_folie …]`-Einträgen (Details im Kopf von `widgets/tab-slider/shortcode.php`).
 
 ## Ohne Elementor (Shortcode)
 

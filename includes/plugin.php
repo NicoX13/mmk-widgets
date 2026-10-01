@@ -9,6 +9,11 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/** Shortcode-Attribut als Ja/Nein deuten (für alle Widgets). */
+function mmk_widgets_ja( $wert ) {
+	return in_array( strtolower( (string) $wert ), [ 'ja', 'yes', 'true', '1' ], true );
+}
+
 final class MMK_Widgets {
 
 	private static $instanz = null;

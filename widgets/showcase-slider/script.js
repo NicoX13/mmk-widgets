@@ -145,6 +145,7 @@ class MmkShowcaseSlider {
 	#start() {
 		if (this.timer || !this.sekunden || !this.sanft || this.imEditor) return;
 		if (this.root.classList.contains('ist-statisch')) return;
+		if (document.hidden) return;   // unsichtbarer Tab: erst bei Rückkehr
 		this.timer = setInterval(() => this.#weiter(), this.sekunden * 1000);
 	}
 
