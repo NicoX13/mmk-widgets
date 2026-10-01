@@ -165,6 +165,12 @@
         line-height:   0;
         cursor:        pointer;
 
+        // Tipp-Fokus neutral halten (Elementor-Globals stylen button:focus)
+        &:focus {
+            border-color: var(--ss-punkt-rand);
+            background:   transparent;
+        }
+
         // Hover wie Aktiv/Fokus (per Stil-Regler übersteuerbar: --ss-punkt-hover)
         &:hover {
             border-color: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
@@ -198,7 +204,7 @@
         svg {width:1.5rem; height:1.5rem; fill:none;}
 
         // Roter Hintergrund bei Hover/Aktiv/Fokus, Icon dann weiß
-        &:is(:hover, :active, :focus-visible) {
+        &:is(:hover, :active, :focus, :focus-visible) {
             background:    var(--ss-pfeilbtn-hover-bg);
             border-radius: 50%;
             color:         rgb(255 255 255);

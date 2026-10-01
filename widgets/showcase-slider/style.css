@@ -144,6 +144,10 @@
   line-height: 0;
   cursor: pointer;
 }
+.mmk-showcase-slider .mmk-showcase-slider__punkt:focus {
+  border-color: var(--ss-punkt-rand);
+  background: transparent;
+}
 .mmk-showcase-slider .mmk-showcase-slider__punkt:hover {
   border-color: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
   background: var(--ss-punkt-hover, var(--ss-punkt-aktiv));
@@ -174,7 +178,7 @@
   height: 1.5rem;
   fill: none;
 }
-.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil:is(:hover, :active, :focus-visible) {
+.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil:is(:hover, :active, :focus, :focus-visible) {
   background: var(--ss-pfeilbtn-hover-bg);
   border-radius: 50%;
   color: rgb(255, 255, 255);

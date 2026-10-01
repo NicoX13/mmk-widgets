@@ -98,8 +98,8 @@
         text-decoration: none;
         transition:      background 0.2s ease;
 
-        // Hover/Fokus: Grau aus dem Template (übersteuerbar)
-        &:is(:hover, :focus-visible) {background:var(--tts-button-hover-bg);}
+        // Hover/Fokus/Aktiv: Grau aus dem Template (übersteuerbar)
+        &:is(:hover, :focus, :focus-visible, :active) {background:var(--tts-button-hover-bg);}
 
         &:focus-visible {
             outline:        3px solid var(--tts-button-hover-bg);
@@ -159,15 +159,18 @@
         color:          var(--tts-tab);
         cursor:         pointer;
 
-        // Grau als Standard, bei Hover/Aktiv/Fokus NUR weiße Schrift.
-        // Hintergrund/Radius auch im Zustand gepinnt, sonst gewinnt hier
-        // die spezifischere button:hover-Regel aus den Elementor-Globals.
-        &:is(:hover, :focus-visible) {
-            color:         var(--tts-tab-hover, var(--tts-tab-aktiv));
+        // Kein Hintergrund in KEINEM Zustand (Elementor-Globals stylen
+        // button:hover/:focus/:active mit Hintergrund → alle pinnen)
+        &:is(:hover, :focus, :focus-visible, :active) {
+            border:        0;
             background:    var(--tts-tab-bg, transparent);
             border-radius: var(--tts-tab-radius, 0);
+            box-shadow:    none;
         }
-        &[aria-selected="true"] {color:var(--tts-tab-aktiv); font-weight:700;}
+
+        // Nur die Schriftfarbe wechselt (grau → weiß)
+        &:is(:hover, :focus, :focus-visible, :active) {color:var(--tts-tab-hover, var(--tts-tab-aktiv));}
+        &[aria-selected="true"]               {color:var(--tts-tab-aktiv); font-weight:700;}
 
         &:focus-visible {
             outline:        3px solid currentColor;
@@ -201,7 +204,7 @@
         &.weiter  {right:0.75rem;}
 
         // Roter Hintergrund bei Hover/Aktiv/Fokus (übersteuerbar)
-        &:is(:hover, :active, :focus-visible) {background:var(--tts-pfeil-hover-bg);}
+        &:is(:hover, :active, :focus, :focus-visible) {background:var(--tts-pfeil-hover-bg);}
 
         &:focus-visible {
             outline:        3px solid currentColor;
@@ -238,6 +241,12 @@
         box-sizing:    border-box;
         line-height:   0;
         cursor:        pointer;
+
+        // Tipp-Fokus neutral halten (Elementor-Globals stylen button:focus)
+        &:focus {
+            border-color: var(--tts-punkt-rand);
+            background:   transparent;
+        }
 
         &:hover {
             border-color: var(--tts-punkt-hover, var(--tts-punkt-aktiv));

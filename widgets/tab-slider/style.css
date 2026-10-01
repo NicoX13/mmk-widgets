@@ -82,7 +82,7 @@
   text-decoration: none;
   transition: background 0.2s ease;
 }
-.mmk-tab-slider .mmk-tab-slider__button:is(:hover, :focus-visible) {
+.mmk-tab-slider .mmk-tab-slider__button:is(:hover, :focus, :focus-visible, :active) {
   background: var(--tts-button-hover-bg);
 }
 .mmk-tab-slider .mmk-tab-slider__button:focus-visible {
@@ -143,10 +143,14 @@
   color: var(--tts-tab);
   cursor: pointer;
 }
-.mmk-tab-slider .mmk-tab-slider__tab:is(:hover, :focus-visible) {
-  color: var(--tts-tab-hover, var(--tts-tab-aktiv));
+.mmk-tab-slider .mmk-tab-slider__tab:is(:hover, :focus, :focus-visible, :active) {
+  border: 0;
   background: var(--tts-tab-bg, transparent);
   border-radius: var(--tts-tab-radius, 0);
+  box-shadow: none;
+}
+.mmk-tab-slider .mmk-tab-slider__tab:is(:hover, :focus, :focus-visible, :active) {
+  color: var(--tts-tab-hover, var(--tts-tab-aktiv));
 }
 .mmk-tab-slider .mmk-tab-slider__tab[aria-selected=true] {
   color: var(--tts-tab-aktiv);
@@ -188,7 +192,7 @@
 .mmk-tab-slider .mmk-tab-slider__pfeil.weiter {
   right: 0.75rem;
 }
-.mmk-tab-slider .mmk-tab-slider__pfeil:is(:hover, :active, :focus-visible) {
+.mmk-tab-slider .mmk-tab-slider__pfeil:is(:hover, :active, :focus, :focus-visible) {
   background: var(--tts-pfeil-hover-bg);
 }
 .mmk-tab-slider .mmk-tab-slider__pfeil:focus-visible {
@@ -222,6 +226,10 @@
   box-sizing: border-box;
   line-height: 0;
   cursor: pointer;
+}
+.mmk-tab-slider .mmk-tab-slider__punkt:focus {
+  border-color: var(--tts-punkt-rand);
+  background: transparent;
 }
 .mmk-tab-slider .mmk-tab-slider__punkt:hover {
   border-color: var(--tts-punkt-hover, var(--tts-punkt-aktiv));
