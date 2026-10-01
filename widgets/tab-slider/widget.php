@@ -288,6 +288,28 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 			'selectors' => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-button-text: {{VALUE}};' ],
 		] );
 
+		$this->add_control( 'button_hover_bg', [
+			'label'       => 'Hintergrund Hover/Fokus',
+			'description' => 'Standard: Grau aus dem Template.',
+			'type'        => \Elementor\Controls_Manager::COLOR,
+			'selectors'   => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-button-hover-bg: {{VALUE}};' ],
+		] );
+
+		$this->add_control( 'button_radius', [
+			'label'      => 'Eckenradius',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-button-radius: {{SIZE}}{{UNIT}};' ],
+		] );
+
+		$this->add_responsive_control( 'button_padding', [
+			'label'      => 'Padding',
+			'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'rem', 'px' ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-button-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
+		] );
+
 		$this->end_controls_section();
 
 		// Stil: Navigation
