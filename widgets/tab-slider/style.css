@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
-  padding: 4rem 5rem 6rem;
+  padding: 4rem 5rem var(--tts-tabs-raum, 7rem);
   background: var(--tts-folie-bg, var(--tts-bg));
   opacity: 0;
   visibility: hidden;
@@ -124,7 +124,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem 2.5rem;
+  gap: var(--tts-tab-zeilen-gap, 0rem) var(--tts-tab-spalten-gap, 1.5rem);
   padding: 0 5rem;
 }
 .mmk-tab-slider .mmk-tab-slider__tab {
@@ -237,7 +237,7 @@
   .mmk-tab-slider .mmk-tab-slider__folie {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding: 2.5rem 1.5rem 7rem;
+    padding: 2.5rem 1.5rem calc(var(--tts-tabs-raum, 7rem) + 0.5rem);
   }
   .mmk-tab-slider.mit-pfeilen .mmk-tab-slider__folie {
     padding-inline: 1.5rem;
@@ -256,7 +256,6 @@
     padding-left: 0;
   }
   .mmk-tab-slider .mmk-tab-slider__tabs {
-    gap: 0.5rem 1.25rem;
     padding: 0 3.5rem;
     bottom: 1.25rem;
   }

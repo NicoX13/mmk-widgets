@@ -43,7 +43,7 @@
         display:               grid;
         grid-template-columns: 1fr 1fr;
         align-items:           start;
-        padding:               4rem 5rem 6rem;
+        padding:               4rem 5rem var(--tts-tabs-raum, 7rem);
         background:            var(--tts-folie-bg, var(--tts-bg));
         opacity:               0;
         visibility:            hidden;
@@ -139,7 +139,7 @@
         display:         flex;
         flex-wrap:       wrap;
         justify-content: center;
-        gap:             0.5rem 2.5rem;
+        gap:             var(--tts-tab-zeilen-gap, 0rem) var(--tts-tab-spalten-gap, 1.5rem);
         padding:         0 5rem;
     }
 
@@ -259,7 +259,7 @@
         .mmk-tab-slider__folie {
             grid-template-columns: 1fr;
             gap:                   1.5rem;
-            padding:               2.5rem 1.5rem 7rem;
+            padding:               2.5rem 1.5rem calc(var(--tts-tabs-raum, 7rem) + 0.5rem);
         }
 
         // Pfeile raus aus der Textfläche: unten neben der Tab-Leiste,
@@ -268,7 +268,7 @@
         .mmk-tab-slider__pfeil    {top:auto; bottom:0.875rem; transform:none;}
         .mmk-tab-slider__headline {padding:0; text-align:left;}
         .mmk-tab-slider__inhalt   {border-left:0; padding-left:0;}
-        .mmk-tab-slider__tabs     {gap:0.5rem 1.25rem; padding:0 3.5rem; bottom:1.25rem;}
+        .mmk-tab-slider__tabs     {padding:0 3.5rem; bottom:1.25rem;}
         .mmk-tab-slider__pfeil svg {width:1.5rem; height:1.5rem;}
     }
 }

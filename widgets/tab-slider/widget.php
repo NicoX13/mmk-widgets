@@ -365,6 +365,31 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
+		$this->add_control( 'tab_spalten_gap', [
+			'label'      => 'Abstand zwischen Tabs',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 5, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 80 ] ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-spalten-gap: {{SIZE}}{{UNIT}};' ],
+		] );
+
+		$this->add_control( 'tab_zeilen_gap', [
+			'label'      => 'Abstand zwischen Tab-Zeilen',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-zeilen-gap: {{SIZE}}{{UNIT}};' ],
+		] );
+
+		$this->add_responsive_control( 'tabs_raum', [
+			'label'       => 'Abstand Inhalt → Tab-Leiste',
+			'description' => 'Platz unter dem Inhalt, in dem die Tab-Leiste sitzt.',
+			'type'        => \Elementor\Controls_Manager::SLIDER,
+			'size_units'  => [ 'rem', 'px' ],
+			'range'       => [ 'rem' => [ 'min' => 3, 'max' => 14, 'step' => 0.25 ], 'px' => [ 'min' => 48, 'max' => 224 ] ],
+			'selectors'   => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tabs-raum: {{SIZE}}{{UNIT}};' ],
+		] );
+
 		$this->add_control( 'pfeil_farbe', [
 			'label'     => 'Pfeile',
 			'type'      => \Elementor\Controls_Manager::COLOR,
