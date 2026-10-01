@@ -19,6 +19,8 @@
     --tts-tab:         var(--gray, rgb(40 40 40));
     --tts-tab-aktiv:   rgb(255 255 255);
     --tts-pfeil:       rgb(255 255 255);
+    --tts-pfeil-padding:  1rem;
+    --tts-pfeil-hover-bg: var(--red, rgb(182 30 63));
     --tts-button-bg:   var(--red, rgb(182 30 63));
     --tts-button-text: rgb(255 255 255);
     --tts-punkt:       0.625rem;
@@ -137,9 +139,10 @@
 
     .mmk-tab-slider__tab {
         min-width:      0;
-        padding:        0.25rem 0;
+        padding:        var(--tts-tab-padding, 0.25rem 0);
         border:         0;
-        background:     transparent;
+        border-radius:  var(--tts-tab-radius, 0);
+        background:     var(--tts-tab-bg, transparent);
         box-shadow:     none;
         font-size:      0.8125rem;
         font-weight:    600;
@@ -148,9 +151,9 @@
         color:          var(--tts-tab);
         cursor:         pointer;
 
-        // Hover wie Aktiv (übersteuerbar: --tts-tab-hover)
-        &:hover                 {color:var(--tts-tab-hover, var(--tts-tab-aktiv));}
-        &[aria-selected="true"] {color:var(--tts-tab-aktiv); font-weight:700;}
+        // Grau als Standard, bei Hover/Aktiv/Fokus weiß (--tts-tab-hover übersteuert)
+        &:is(:hover, :focus-visible) {color:var(--tts-tab-hover, var(--tts-tab-aktiv));}
+        &[aria-selected="true"]      {color:var(--tts-tab-aktiv); font-weight:700;}
 
         &:focus-visible {
             outline:        3px solid currentColor;
@@ -166,7 +169,7 @@
         transform:  translateY(-50%);
         display:    none;
         min-width:  0;
-        padding:    0.5rem;
+        padding:    var(--tts-pfeil-padding);
         border:     0;
         border-radius: 50%;
         background: transparent;
@@ -174,6 +177,7 @@
         line-height: 0;
         color:      var(--tts-pfeil);
         cursor:     pointer;
+        transition: background 0.2s ease;
 
         svg {width:2rem; height:2rem; fill:none;}
 
@@ -182,7 +186,8 @@
         &.zurueck {left:0.75rem;}
         &.weiter  {right:0.75rem;}
 
-        &:is(:hover, :focus-visible) {color:var(--tts-tab-hover, var(--tts-tab-aktiv));}
+        // Roter Hintergrund bei Hover/Aktiv/Fokus (übersteuerbar)
+        &:is(:hover, :active, :focus-visible) {background:var(--tts-pfeil-hover-bg);}
 
         &:focus-visible {
             outline:        3px solid currentColor;

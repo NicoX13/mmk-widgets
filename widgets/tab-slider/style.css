@@ -9,6 +9,8 @@
   --tts-tab: var(--gray, rgb(40 40 40));
   --tts-tab-aktiv: rgb(255 255 255);
   --tts-pfeil: rgb(255 255 255);
+  --tts-pfeil-padding: 1rem;
+  --tts-pfeil-hover-bg: var(--red, rgb(182 30 63));
   --tts-button-bg: var(--red, rgb(182 30 63));
   --tts-button-text: rgb(255 255 255);
   --tts-punkt: 0.625rem;
@@ -122,9 +124,10 @@
 }
 .mmk-tab-slider .mmk-tab-slider__tab {
   min-width: 0;
-  padding: 0.25rem 0;
+  padding: var(--tts-tab-padding, 0.25rem 0);
   border: 0;
-  background: transparent;
+  border-radius: var(--tts-tab-radius, 0);
+  background: var(--tts-tab-bg, transparent);
   box-shadow: none;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -133,7 +136,7 @@
   color: var(--tts-tab);
   cursor: pointer;
 }
-.mmk-tab-slider .mmk-tab-slider__tab:hover {
+.mmk-tab-slider .mmk-tab-slider__tab:is(:hover, :focus-visible) {
   color: var(--tts-tab-hover, var(--tts-tab-aktiv));
 }
 .mmk-tab-slider .mmk-tab-slider__tab[aria-selected=true] {
@@ -150,7 +153,7 @@
   transform: translateY(-50%);
   display: none;
   min-width: 0;
-  padding: 0.5rem;
+  padding: var(--tts-pfeil-padding);
   border: 0;
   border-radius: 50%;
   background: transparent;
@@ -158,6 +161,7 @@
   line-height: 0;
   color: var(--tts-pfeil);
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 .mmk-tab-slider .mmk-tab-slider__pfeil svg {
   width: 2rem;
@@ -175,8 +179,8 @@
 .mmk-tab-slider .mmk-tab-slider__pfeil.weiter {
   right: 0.75rem;
 }
-.mmk-tab-slider .mmk-tab-slider__pfeil:is(:hover, :focus-visible) {
-  color: var(--tts-tab-hover, var(--tts-tab-aktiv));
+.mmk-tab-slider .mmk-tab-slider__pfeil:is(:hover, :active, :focus-visible) {
+  background: var(--tts-pfeil-hover-bg);
 }
 .mmk-tab-slider .mmk-tab-slider__pfeil:focus-visible {
   outline: 3px solid currentColor;

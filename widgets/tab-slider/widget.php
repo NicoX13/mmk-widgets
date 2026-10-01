@@ -315,10 +315,32 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 		] );
 
 		$this->add_control( 'tab_hover', [
-			'label'       => 'Hover (Tabs & Pfeile)',
-			'description' => 'Leer = gleiche Farbe wie aktiv.',
+			'label'       => 'Tab-Schrift Hover/Fokus',
+			'description' => 'Leer = gleiche Farbe wie aktiv (weiß).',
 			'type'        => \Elementor\Controls_Manager::COLOR,
 			'selectors'   => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-hover: {{VALUE}};' ],
+		] );
+
+		$this->add_control( 'tab_bg', [
+			'label'       => 'Tab-Hintergrund',
+			'description' => 'Standard: kein Hintergrund.',
+			'type'        => \Elementor\Controls_Manager::COLOR,
+			'selectors'   => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-bg: {{VALUE}};' ],
+		] );
+
+		$this->add_control( 'tab_radius', [
+			'label'      => 'Tab-Eckenradius',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-radius: {{SIZE}}{{UNIT}};' ],
+		] );
+
+		$this->add_responsive_control( 'tab_padding', [
+			'label'      => 'Tab-Padding',
+			'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+			'size_units' => [ 'rem', 'px' ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-tab-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ],
 		] );
 
 		$this->add_control( 'pfeil_farbe', [
@@ -326,6 +348,22 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 			'type'      => \Elementor\Controls_Manager::COLOR,
 			'separator' => 'before',
 			'selectors' => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-pfeil: {{VALUE}};' ],
+		] );
+
+		$this->add_control( 'pfeil_hover_bg', [
+			'label'       => 'Pfeile Hintergrund Hover/Fokus',
+			'description' => 'Standard: Rot aus dem Template.',
+			'type'        => \Elementor\Controls_Manager::COLOR,
+			'selectors'   => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-pfeil-hover-bg: {{VALUE}};' ],
+		] );
+
+		$this->add_control( 'pfeil_padding', [
+			'label'      => 'Pfeile Padding',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'rem', 'px' ],
+			'range'      => [ 'rem' => [ 'min' => 0, 'max' => 3, 'step' => 0.125 ], 'px' => [ 'min' => 0, 'max' => 48 ] ],
+			'default'    => [ 'size' => 1, 'unit' => 'rem' ],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-pfeil-padding: {{SIZE}}{{UNIT}};' ],
 		] );
 
 		$this->add_control( 'punkt_aktiv', [
