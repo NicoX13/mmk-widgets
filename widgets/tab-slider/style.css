@@ -269,6 +269,14 @@
     padding: 0 3.5rem;
     bottom: 1.25rem;
   }
+  .mmk-tab-slider .mmk-tab-slider__tabs::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    border-top: 1px solid var(--tts-linie);
+  }
   .mmk-tab-slider .mmk-tab-slider__pfeil svg {
     width: 1.5rem;
     height: 1.5rem;
