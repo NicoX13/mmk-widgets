@@ -16,6 +16,7 @@ class MmkShowcaseSlider {
 		this.sekunden = parseFloat(root.dataset.autoplay) || 0;
 		this.aktiv    = 0;
 		this.timer    = null;
+		this.anim     = null;
 		this.sichtbar = new Set();
 		this.sanft    = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 		this.imEditor = document.body.classList.contains('elementor-editor-active');
@@ -25,6 +26,10 @@ class MmkShowcaseSlider {
 		this.#beobachteAktiv();
 		this.#navigation();
 		this.#autoplay();
+
+		['pointerdown', 'wheel', 'touchstart'].forEach((ereignis) => {
+			this.track.addEventListener(ereignis, () => this.#animationStopp(), {passive: true});
+		});
 	}
 
 	// Statisch, wenn nicht mehr Karten da sind als Plätze
@@ -38,7 +43,43 @@ class MmkShowcaseSlider {
 	#scrolleZu(index) {
 		const ziel = this.karten[(index + this.karten.length) % this.karten.length];
 		const links = ziel.getBoundingClientRect().left - this.track.getBoundingClientRect().left + this.track.scrollLeft;
-		this.track.scrollTo({left: links, behavior: this.sanft ? 'smooth' : 'auto'});
+		if (!this.sanft) {
+			this.track.scrollTo({left: links});
+			return;
+		}
+		this.#animiere(links);
+	}
+
+	// Eigene Scroll-Animation statt behavior:'smooth' — Chrome bricht
+	// natives sanftes Scrollen bei aktivem Scroll-Snap teils sofort ab.
+	// Während der Animation ist das Einrasten aus, danach wieder an.
+	#animiere(ziel) {
+		this.#animationStopp();
+		const start = this.track.scrollLeft;
+		const weg   = Math.min(ziel, this.track.scrollWidth - this.track.clientWidth) - start;
+		if (Math.abs(weg) < 1) return;
+		const dauer = 500;
+		const t0    = performance.now();
+		this.track.style.scrollSnapType = 'none';
+		const schritt = (t) => {
+			const p = Math.min(1, (t - t0) / dauer);
+			this.track.scrollLeft = start + weg * (1 - Math.pow(1 - p, 3));   // easeOutCubic
+			if (p < 1) {
+				this.anim = requestAnimationFrame(schritt);
+			} else {
+				this.anim = null;
+				this.track.style.scrollSnapType = '';
+			}
+		};
+		this.anim = requestAnimationFrame(schritt);
+	}
+
+	// Greift der Nutzer ein (Wischen, Mausrad), gewinnt der Nutzer
+	#animationStopp() {
+		if (!this.anim) return;
+		cancelAnimationFrame(this.anim);
+		this.anim = null;
+		this.track.style.scrollSnapType = '';
 	}
 
 	// Aktiv = erste (fast) voll sichtbare Karte; Punkte folgen dem Scroll
@@ -60,14 +101,28 @@ class MmkShowcaseSlider {
 		this.karten.forEach((karte) => beobachter.observe(karte));
 	}
 
+	// Rewind statt geklonter Karten: Am Ende geht es vorne wieder los.
+	// Hält DOM und Screenreader sauber (kein Inhalt doppelt).
+	#amEnde() {
+		return this.track.scrollLeft >= this.track.scrollWidth - this.track.clientWidth - 1;
+	}
+
+	#weiter() {
+		this.#amEnde() ? this.#scrolleZu(0) : this.#scrolleZu(this.aktiv + 1);
+	}
+
+	#zurueck() {
+		this.track.scrollLeft <= 1 ? this.#scrolleZu(this.karten.length - 1) : this.#scrolleZu(this.aktiv - 1);
+	}
+
 	#navigation() {
 		this.punkte.forEach((punkt, i) => {
 			punkt.addEventListener('click', () => {this.#scrolleZu(i); this.#neustart();});
 		});
 		this.root.querySelector('.mmk-showcase-slider__slider-pfeil.zurueck')
-			?.addEventListener('click', () => {this.#scrolleZu(this.aktiv - 1); this.#neustart();});
+			?.addEventListener('click', () => {this.#zurueck(); this.#neustart();});
 		this.root.querySelector('.mmk-showcase-slider__slider-pfeil.weiter')
-			?.addEventListener('click', () => {this.#scrolleZu(this.aktiv + 1); this.#neustart();});
+			?.addEventListener('click', () => {this.#weiter(); this.#neustart();});
 	}
 
 	#autoplay() {
@@ -85,7 +140,7 @@ class MmkShowcaseSlider {
 	#start() {
 		if (this.timer || !this.sekunden || !this.sanft || this.imEditor) return;
 		if (this.root.classList.contains('ist-statisch')) return;
-		this.timer = setInterval(() => this.#scrolleZu(this.aktiv + 1), this.sekunden * 1000);
+		this.timer = setInterval(() => this.#weiter(), this.sekunden * 1000);
 	}
 
 	#stopp() {
