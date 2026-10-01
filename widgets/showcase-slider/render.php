@@ -20,23 +20,30 @@ function mmk_showcase_slider_karten_aus_beitraegen( array $a ) {
 		'ignore_sticky_posts' => true,
 	];
 
+	// Sicherheit: nur öffentliche Inhaltstypen, egal was in den
+	// Einstellungen steht — nichts Internes (Blöcke, Entwürfe o. Ä.) leaken.
+	$oeffentliche_typen = array_values( get_post_types( [ 'public' => true ] ) );
+
 	if ( ! empty( $a['ids'] ) ) {
-		$ids = array_map( 'absint', (array) $a['ids'] );
+		$ids = array_filter( array_map( 'absint', (array) $a['ids'] ) );
 		if ( ! $ids ) return [];
-		$abfrage['post_type']      = 'any';
+		$abfrage['post_type']      = $oeffentliche_typen;
 		$abfrage['post__in']       = $ids;
 		$abfrage['orderby']        = 'post__in';
 		$abfrage['posts_per_page'] = count( $ids );
 	} else {
-		$abfrage['post_type']      = $a['post_typ'] ?: 'post';
-		$abfrage['posts_per_page'] = max( 1, absint( $a['anzahl'] ?? 6 ) );
+		$typ = sanitize_key( $a['post_typ'] ?? 'post' );
+		$abfrage['post_type']      = in_array( $typ, $oeffentliche_typen, true ) ? $typ : 'post';
+		$abfrage['posts_per_page'] = min( 50, max( 1, absint( $a['anzahl'] ?? 6 ) ) );
 
 		// Begriffe nach Taxonomie bündeln, Einträge wie "category|12"
 		$nach_tax = [];
 		foreach ( (array) ( $a['terme'] ?? [] ) as $wert ) {
 			if ( strpos( $wert, '|' ) === false ) continue;
 			list( $tax, $term_id ) = explode( '|', $wert, 2 );
-			$nach_tax[ $tax ][] = absint( $term_id );
+			$tax_obj = get_taxonomy( sanitize_key( $tax ) );
+			if ( ! $tax_obj || ! $tax_obj->public ) continue;   // nur öffentliche Taxonomien
+			$nach_tax[ $tax_obj->name ][] = absint( $term_id );
 		}
 		if ( $nach_tax ) {
 			$tax_query = [ 'relation' => 'OR' ];

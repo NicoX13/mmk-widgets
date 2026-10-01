@@ -57,3 +57,11 @@ define( 'MMK_WIDGETS_GITHUB_TOKEN', 'github_pat_…' );
 ```
 
 Technik: [plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker) (liegt unter `includes/lib/`).
+
+## Sicherheit (Grundsätze für alle Widgets)
+
+- **Jede Ausgabe escapen:** Texte `esc_html()`, Links `esc_url()`, Attribute `esc_attr()`. HTML-Tags (Titel-Tag etc.) nur aus fester Whitelist.
+- **Abfragen eingrenzen:** Nur veröffentlichte Inhalte öffentlicher Inhaltstypen und Taxonomien, Anzahl gedeckelt. IDs und Zahlen immer `absint()`.
+- **Keine Angriffsfläche anbieten:** Keine eigenen Formulare, kein AJAX, keine Datei-Uploads, keine Optionen-Seiten — das Plugin liest nur und gibt aus. Alle PHP-Dateien mit `ABSPATH`-Guard.
+- **Keine fremden Quellen:** Kein CDN, keine externen Skripte/Fonts — alles liegt im Plugin.
+- **Update-Kanal schützen:** Wer auf das GitHub-Repo schreiben kann, verteilt Code auf alle Sites. Deshalb: GitHub-Konto mit Zwei-Faktor, Token als *fine-grained PAT* nur mit Lese-Recht auf dieses eine Repo, Token NUR in `wp-config.php` (nie committen, nie in die Datenbank).
