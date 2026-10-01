@@ -15,7 +15,7 @@
     --tts-headline:    rgb(255 255 255);
     --tts-titel:       var(--gray, rgb(40 40 40));
     --tts-text:        var(--gray, rgb(40 40 40));
-    --tts-linie:       rgb(255 255 255 / 60%);
+    --tts-linie:       rgb(255 255 255);
     --tts-tab:         var(--gray, rgb(40 40 40));
     --tts-tab-aktiv:   rgb(255 255 255);
     --tts-pfeil:       rgb(255 255 255);
@@ -281,11 +281,13 @@
         .mmk-tab-slider__inhalt   {border-left:0; padding-left:0;}
         .mmk-tab-slider__tabs     {padding:0 3.5rem; bottom:1.25rem;}
 
-        // Dünne Trennlinie über der Tab-Leiste (nutzt die Trennlinien-Farbe)
+        // Dünne Trennlinie über der Tab-Leiste, exakt mittig zwischen
+        // Content-Ende und Tabs (100% = Höhe der Tab-Leiste, 1.25rem =
+        // deren Bodenabstand, raum+0.5rem = reservierter Fußbereich)
         .mmk-tab-slider__tabs::before {
             content:    '';
             position:   absolute;
-            top:        -1rem;
+            top:        calc(((1.25rem + 100%) - (var(--tts-tabs-raum, 7rem) + 0.5rem)) / 2);
             left:       1.5rem;
             right:      1.5rem;
             border-top: 1px solid var(--tts-linie);
