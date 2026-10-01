@@ -209,6 +209,12 @@
 
     &.mit-pfeilen .mmk-tab-slider__pfeil {display:inline-flex;}
 
+    // Pfeile dürfen nie in den Text ragen: Seitenabstand der Folie wächst
+    // notfalls mit der Pfeilbreite mit (Offset + Icon + 2x Padding + Luft)
+    &.mit-pfeilen .mmk-tab-slider__folie {
+        padding-inline: max(5rem, calc(1.75rem + 2rem + 2 * var(--tts-pfeil-padding)));
+    }
+
     .mmk-tab-slider__punkte {
         display:         none;
         justify-content: center;
@@ -256,9 +262,13 @@
             padding:               2.5rem 1.5rem 7rem;
         }
 
+        // Pfeile raus aus der Textfläche: unten neben der Tab-Leiste,
+        // die Tabs lassen ihnen seitlich Platz
+        &.mit-pfeilen .mmk-tab-slider__folie {padding-inline:1.5rem;}
+        .mmk-tab-slider__pfeil    {top:auto; bottom:0.875rem; transform:none;}
         .mmk-tab-slider__headline {padding:0; text-align:left;}
         .mmk-tab-slider__inhalt   {border-left:0; padding-left:0;}
-        .mmk-tab-slider__tabs     {gap:0.5rem 1.25rem; padding:0 1.5rem; bottom:1.25rem;}
+        .mmk-tab-slider__tabs     {gap:0.5rem 1.25rem; padding:0 3.5rem; bottom:1.25rem;}
         .mmk-tab-slider__pfeil svg {width:1.5rem; height:1.5rem;}
     }
 }
