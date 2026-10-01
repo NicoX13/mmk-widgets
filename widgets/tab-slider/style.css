@@ -126,8 +126,10 @@
   justify-content: center;
   gap: var(--tts-tab-zeilen-gap, 0rem) var(--tts-tab-spalten-gap, 1.5rem);
   padding: 0 5rem;
+  pointer-events: none;
 }
 .mmk-tab-slider .mmk-tab-slider__tab {
+  pointer-events: auto;
   min-width: 0;
   padding: var(--tts-tab-padding, 0.25rem 0);
   border: 0;
