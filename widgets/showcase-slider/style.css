@@ -1,0 +1,183 @@
+.mmk-showcase-slider {
+  --ss-sichtbar: 3;
+  --ss-luecke: 4px;
+  --ss-hoehe: 30rem;
+  --ss-radius: 1.5rem;
+  --ss-wachstum: 1.5;
+  --ss-dauer: 0.4s;
+  --ss-icon: 1.75rem;
+  --ss-punkt: 0.625rem;
+  --ss-punkt-aktiv: rgb(182 30 63);
+  --ss-punkt-rand: rgb(40 40 40);
+  --ss-breite: calc((100% - (var(--ss-sichtbar) - 1) * var(--ss-luecke)) / var(--ss-sichtbar));
+}
+.mmk-showcase-slider .mmk-showcase-slider__rahmen {
+  border-radius: var(--ss-radius);
+  overflow: hidden;
+}
+.mmk-showcase-slider .mmk-showcase-slider__track {
+  display: flex;
+  gap: var(--ss-luecke);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__track::-webkit-scrollbar {
+  display: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__karte {
+  position: relative;
+  flex: 0 0 var(--ss-breite);
+  min-width: var(--ss-breite);
+  height: var(--ss-hoehe);
+  margin: 0;
+  scroll-snap-align: start;
+  transition: flex-basis var(--ss-dauer) ease, min-width var(--ss-dauer) ease;
+}
+.mmk-showcase-slider .mmk-showcase-slider__karte:is(:hover, :focus-within) {
+  flex-basis: min(var(--ss-breite) * var(--ss-wachstum), 100%);
+  min-width: min(var(--ss-breite) * var(--ss-wachstum), 100%);
+}
+.mmk-showcase-slider.ist-statisch .mmk-showcase-slider__karte {
+  flex-shrink: 1;
+  min-width: 0;
+}
+.mmk-showcase-slider .mmk-showcase-slider__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+.mmk-showcase-slider .mmk-showcase-slider__link:focus-visible {
+  outline: 3px solid rgb(255, 255, 255);
+  outline-offset: -3px;
+}
+.mmk-showcase-slider .mmk-showcase-slider__bild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.mmk-showcase-slider .mmk-showcase-slider__verlauf {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 55%);
+  transition: opacity var(--ss-dauer) ease;
+  pointer-events: none;
+}
+.mmk-showcase-slider.verlauf-hover-aus .mmk-showcase-slider__karte:is(:hover, :focus-within) .mmk-showcase-slider__verlauf {
+  opacity: 0;
+}
+.mmk-showcase-slider .mmk-showcase-slider__inhalt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.25rem 3.5rem 1.25rem 1.5rem;
+  color: rgb(255, 255, 255);
+}
+.mmk-showcase-slider .mmk-showcase-slider__titel {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: inherit;
+}
+.mmk-showcase-slider .mmk-showcase-slider__text {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  opacity: 0.9;
+  color: inherit;
+}
+.mmk-showcase-slider .mmk-showcase-slider__pfeil {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: var(--ss-icon);
+  height: var(--ss-icon);
+  color: rgb(255, 255, 255);
+}
+.mmk-showcase-slider .mmk-showcase-slider__pfeil svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__pfeil i {
+  font-size: var(--ss-icon);
+}
+.mmk-showcase-slider .mmk-showcase-slider__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.mmk-showcase-slider.ist-statisch .mmk-showcase-slider__nav {
+  display: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__punkte {
+  display: none;
+  gap: 0.5rem;
+}
+.mmk-showcase-slider.mit-punkten .mmk-showcase-slider__punkte {
+  display: flex;
+}
+.mmk-showcase-slider .mmk-showcase-slider__punkt {
+  width: var(--ss-punkt);
+  height: var(--ss-punkt);
+  min-width: 0;
+  padding: 0;
+  border: 1px solid var(--ss-punkt-rand);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  box-sizing: border-box;
+  line-height: 0;
+  cursor: pointer;
+}
+.mmk-showcase-slider .mmk-showcase-slider__punkt[aria-current=true] {
+  border-color: var(--ss-punkt-aktiv);
+  background: var(--ss-punkt-aktiv);
+}
+.mmk-showcase-slider .mmk-showcase-slider__punkt:focus-visible {
+  outline: 3px solid var(--ss-punkt-aktiv);
+  outline-offset: 2px;
+}
+.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil {
+  display: none;
+  min-width: 0;
+  padding: 0.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  line-height: 0;
+  color: rgb(40, 40, 40);
+  cursor: pointer;
+}
+.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+}
+.mmk-showcase-slider .mmk-showcase-slider__slider-pfeil:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+.mmk-showcase-slider.mit-pfeilen .mmk-showcase-slider__slider-pfeil {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mmk-showcase-slider .mmk-showcase-slider__karte,
+  .mmk-showcase-slider .mmk-showcase-slider__verlauf {
+    transition: none;
+  }
+}

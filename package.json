@@ -1,0 +1,14 @@
+{
+	"name": "mmk-widgets",
+	"version": "0.1.0",
+	"description": "Eigene Elementor-Widgets der Agentur modus",
+	"author": "Nico Felix",
+	"private": true,
+	"scripts": {
+		"css": "sass widgets:widgets --no-source-map --style=expanded",
+		"watch": "sass --watch widgets:widgets --no-source-map --style=expanded"
+	},
+	"devDependencies": {
+		"sass": "^1.80.0"
+	}
+}
