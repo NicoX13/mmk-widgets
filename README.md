@@ -141,18 +141,7 @@ Manuell mit eigenen Karten:
 
 ## Updates über GitHub
 
-Das Plugin prüft dieses Repo (Branch `main`) auf neue Versionen und bietet sie als normales Plugin-Update in WordPress an — auf jeder Installation, ohne weitere Konfiguration. Technik: [plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker) (liegt unter `includes/lib/`).
-
-Ablauf für ein Release:
-
-1. Versionsnummer in `mmk-widgets.php` erhöhen (Zeile `Version:` und `MMK_WIDGETS_VERSION`)
-2. Committen, pushen, optional taggen (`git tag v0.x.0 && git push origin v0.x.0`)
-
-Nur falls das Repo wieder privat gestellt wird, braucht jede WordPress-Installation einen GitHub-Token (fine-grained, nur Lese-Recht auf dieses Repo) in der `wp-config.php`:
-
-```php
-define( 'MMK_WIDGETS_GITHUB_TOKEN', 'github_pat_…' );
-```
+Das Plugin prüft dieses Repo auf neue Versionen und bietet sie als normales Plugin-Update in WordPress an — auf jeder Installation, ohne weitere Konfiguration. Technik: [plugin-update-checker](https://github.com/YahnisElsts/plugin-update-checker) (liegt unter `includes/lib/`).
 
 ## Eigenes Widget anlegen
 
@@ -182,7 +171,7 @@ Grundsätze für alle Widgets in diesem Plugin:
 - **Abfragen eingrenzen:** Nur veröffentlichte Inhalte öffentlicher Inhaltstypen und Taxonomien, Anzahl gedeckelt. IDs und Zahlen immer `absint()`.
 - **Keine Angriffsfläche anbieten:** Keine eigenen Formulare, kein AJAX, keine Datei-Uploads, keine Optionen-Seiten — das Plugin liest nur und gibt aus. Alle PHP-Dateien mit `ABSPATH`-Guard.
 - **Keine fremden Quellen:** Kein CDN, keine externen Skripte/Fonts — alles liegt im Plugin.
-- **Update-Kanal schützen:** Wer auf das GitHub-Repo schreiben kann, verteilt Code auf alle angebundenen Sites. Deshalb: GitHub-Konto mit Zwei-Faktor-Authentifizierung, Schreibrechte eng halten.
+- **Geschützter Update-Kanal:** Updates kommen ausschließlich aus diesem Repo; der Schreibzugriff darauf ist eng gehalten und abgesichert.
 
 ## Lizenz
 
