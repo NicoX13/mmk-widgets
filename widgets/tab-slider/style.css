@@ -1,6 +1,7 @@
 .mmk-tab-slider {
   --tts-bg: rgb(222 172 97);
   --tts-radius: 1.5rem;
+  --tts-min-hoehe: 0px;
   --tts-dauer: 0.45s;
   --tts-headline: rgb(255 255 255);
   --tts-titel: var(--gray, rgb(40 40 40));
@@ -27,6 +28,7 @@
 }
 .mmk-tab-slider .mmk-tab-slider__folien {
   display: grid;
+  min-height: var(--tts-min-hoehe, 0px);
 }
 .mmk-tab-slider .mmk-tab-slider__folie {
   grid-area: 1/1;

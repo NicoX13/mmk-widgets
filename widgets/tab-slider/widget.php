@@ -202,6 +202,18 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-radius: {{SIZE}}{{UNIT}};' ],
 		] );
 
+		$this->add_responsive_control( 'mindesthoehe', [
+			'label'      => 'Mindesthöhe',
+			'type'       => \Elementor\Controls_Manager::SLIDER,
+			'size_units' => [ 'px', 'rem', 'vh' ],
+			'range'      => [
+				'px'  => [ 'min' => 0, 'max' => 1200 ],
+				'rem' => [ 'min' => 0, 'max' => 60 ],
+				'vh'  => [ 'min' => 0, 'max' => 100 ],
+			],
+			'selectors'  => [ '{{WRAPPER}} .mmk-tab-slider' => '--tts-min-hoehe: {{SIZE}}{{UNIT}};' ],
+		] );
+
 		$this->add_control( 'linie_farbe', [
 			'label'     => 'Trennlinie',
 			'type'      => \Elementor\Controls_Manager::COLOR,

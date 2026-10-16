@@ -11,6 +11,7 @@
 .mmk-tab-slider {
     --tts-bg:          rgb(222 172 97);               // $yellow aus dem Template
     --tts-radius:      1.5rem;
+    --tts-min-hoehe:   0px;                         // Mindesthöhe der Bühne
     --tts-dauer:       0.45s;
     --tts-headline:    rgb(255 255 255);
     --tts-titel:       var(--gray, rgb(40 40 40));
@@ -36,7 +37,7 @@
         overflow:      hidden;
     }
 
-    .mmk-tab-slider__folien {display:grid;}
+    .mmk-tab-slider__folien {display:grid; min-height:var(--tts-min-hoehe, 0px);}
 
     .mmk-tab-slider__folie {
         grid-area:             1 / 1;

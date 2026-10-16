@@ -8,8 +8,9 @@
  * [/mmk_tab_slider]
  *
  * Weitere Attribute: headline_tag, titel_tag, text_tag, pfeile (ja/nein),
- * punkte (ja/nein), pause (ja/nein), label. Pro Folie zusätzlich:
- * headline (abweichende linke Headline), neuer_tab (ja/nein).
+ * punkte (ja/nein), pause (ja/nein), label, mindesthoehe (z. B. "30rem",
+ * "500px" oder "60vh"). Pro Folie zusätzlich: headline (abweichende linke
+ * Headline), neuer_tab (ja/nein).
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -50,7 +51,11 @@ add_shortcode( 'mmk_tab_slider', function ( $a, $inhalt = null ) {
 		'pfeile'       => 'ja',
 		'punkte'       => 'nein',
 		'label'        => 'Unsere Leistungen',
+		'mindesthoehe' => '',
 	], $a, 'mmk_tab_slider' );
+
+	// Sicherheit: nur Zahl + Einheit zulassen, sonst ignorieren
+	$min_hoehe = preg_match( '/\A\d+(\.\d+)?(px|rem|em|vh|%)\z/', $a['mindesthoehe'] ) ? $a['mindesthoehe'] : '';
 
 	$folien = [];
 	if ( $inhalt && has_shortcode( $inhalt, 'mmk_folie' ) ) {
@@ -76,5 +81,6 @@ add_shortcode( 'mmk_tab_slider', function ( $a, $inhalt = null ) {
 		'pause_bei_hover'   => mmk_widgets_ja( $a['pause'] ),
 		'pfeile'            => mmk_widgets_ja( $a['pfeile'] ),
 		'punkte'            => mmk_widgets_ja( $a['punkte'] ),
+		'style'             => $min_hoehe ? '--tts-min-hoehe:' . $min_hoehe . ';' : '',
 	] );
 } );
