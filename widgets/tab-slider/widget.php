@@ -205,7 +205,8 @@ class MMK_Widget_Tab_Slider extends \Elementor\Widget_Base {
 		$this->add_responsive_control( 'mindesthoehe', [
 			'label'      => 'Mindesthöhe',
 			'type'       => \Elementor\Controls_Manager::SLIDER,
-			'size_units' => [ 'px', 'rem', 'vh' ],
+			// 'custom' = Bleistift-Symbol: freie Eingabe inkl. calc()/Variablen
+			'size_units' => [ 'px', 'rem', 'vh', 'custom' ],
 			'range'      => [
 				'px'  => [ 'min' => 0, 'max' => 1200 ],
 				'rem' => [ 'min' => 0, 'max' => 60 ],
