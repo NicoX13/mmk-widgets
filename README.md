@@ -5,7 +5,7 @@
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)
 ![Lizenz](https://img.shields.io/badge/Lizenz-GPL--2.0--or--later-green)
 
-Eigene Elementor-Widgets der Agentur [modus: medien + kommunikation](https://www.modus-media.de) — gebaut für den eigenen Web-Relaunch, nutzbar auf jeder WordPress-Seite. Alle Widgets erscheinen im Elementor-Panel unter der Kategorie **modus Widgets** und funktionieren **auch komplett ohne Elementor** per Shortcode.
+Eigene Elementor-Widgets der Agentur [modus: medien + kommunikation](https://www.modus-media.de), entwickelt von **Nico Felix** — gebaut für den eigenen Web-Relaunch, nutzbar auf jeder WordPress-Seite. Alle Widgets erscheinen im Elementor-Panel unter der Kategorie **modus Widgets** und funktionieren **auch komplett ohne Elementor** per Shortcode.
 
 ## Inhalt
 
@@ -18,7 +18,7 @@ Eigene Elementor-Widgets der Agentur [modus: medien + kommunikation](https://www
 - [Eigenes Widget anlegen](#eigenes-widget-anlegen)
 - [Entwicklung & Build](#entwicklung--build)
 - [Sicherheit](#sicherheit)
-- [Lizenz](#lizenz)
+- [Autor & Lizenz](#autor--lizenz)
 
 ## Widgets
 
@@ -173,10 +173,8 @@ Grundsätze für alle Widgets in diesem Plugin:
 - **Keine fremden Quellen:** Kein CDN, keine externen Skripte/Fonts — alles liegt im Plugin.
 - **Geschützter Update-Kanal:** Updates kommen ausschließlich aus diesem Repo; der Schreibzugriff darauf ist eng gehalten und abgesichert.
 
-## Lizenz
+## Autor & Lizenz
 
-[GPL-2.0-or-later](LICENSE) — wie WordPress selbst. Frei nutzbar, auch kommerziell; Änderungen und Weitergaben müssen unter derselben Lizenz stehen.
+Autor: **Nico Felix** — [modus: medien + kommunikation gmbh](https://www.modus-media.de), Landau in der Pfalz.
 
----
-
-Ein Plugin von [modus: medien + kommunikation gmbh](https://www.modus-media.de), Landau in der Pfalz.
+Lizenz: [GPL-2.0-or-later](LICENSE) — wie WordPress selbst. Frei nutzbar, auch kommerziell; Änderungen und Weitergaben müssen unter derselben Lizenz stehen.
